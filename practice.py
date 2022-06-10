@@ -1,63 +1,45 @@
-class Animal():
-    ACCELERATION = 9.8 #attribute
-    
-    def __init__(self, name, species, legs = 4):
-        self.name = name
-        self.species = species
-        self.legs = legs
-    
-    # Generic Parent (animal) method -- No OverRide
-    def make_sound(self):
-        print('reeeeeee')
-    
-    # Creating a child class
-class Dog(Animal): # putting the parent inside class dog
-    SPEED = 15
-    
-    def printInfo(self):
-        print(f"The dog runs at {SPEED} mph and accelerates towards the ground at {ACCELERATION} mps")
-        
-    # Creating a grandchild cass
-class Mut(Dog):
-    COLOR = "brown and tanish"
-    
-    # OverRide the Animal Class__init__ method by using the Dog class
-    def __init__(self, name, species, eye_color, legs = 4):
-        Dog.__init__(self, name, species, legs)  # pulling from dog() which is pulling from animal()
-        self.eye_color = eye_color
-        
-    #overRide the make_sound method from the animal class
-    def make_sound(self): #method
-        print("ruff ruff ruff awoooo")
+# Lucky Numbers
+# Given an array of integers arr, a lucky integer is an integer which has a frequency in the array equal to its value.
+# Return a lucky integer in the array. If there are multiple lucky integers return the largest of them. If there is no lucky integer return -1.
+# Example 1:
+# Input: arr = [2,2,3,4]
+# Output: 2
+# Explanation: The only lucky number in the array is 2 because frequency[2] == 2.
+# Example 2:
+# Input: arr = [1,2,2,3,3,3]
+# Output: 3
+# Explanation: 1, 2 and 3 are all lucky numbers, return the largest of them.
 
 
 
+# def luckynum(num):
+#     lucky_arr = []
+#     for x in num:
+#         if x == num.count(x):
+#             lucky_arr.append(x)
+#             lucky_num = max(lucky_arr)
 
-cat = Animal("Sassy", 'Himalayan cat')
-print(cat.name)
-dog = Dog('Shadow', 'Golden Retriever')
-cat.make_sound()
-dog.make_sound()
-print(dog.ACCELERATION)
-print(dog.SPEED)  #specificaly only for dog, not for any other animal like can't do cat.SPEED
-
-mut = Mut('Eyo', 'chihuahua-terrier mix and maybe also beagle?', 'brown')
-mut.make_sound()  # overRides the animal sound
+#     return lucky_num
 
 
 
+def lucky_number(lst):        
+    return max([x if lst.count(x) == x else -1 for x in lst])
 
-class Mut(Dog):
-    COLOR = "brown and tan"
-    
-    #overriding the Animal class __init__ with the super().__init__
-    def __init__(self, name, species, eye_color, legs = 4):
-        super().__init__(name, species, legs)
-        # super will reference the class that the child class takes in
-        self.eye_color = eye_color
-    def make_sound(self):
-        print('woof')
+print(lucky_number([2,2,3,4]))
 
-Czika = Mut('Czika', 'mini pinscher', 'black and tan')
-Czika.make_sound()
-print(Czika.SPEED)
+
+
+# def luckynum(array):
+#     from collections import Counter
+#     c = dict(Counter(array))
+#     max = 0
+#     for k,v in c.items():
+#         if k == v:
+#             if k > max:
+#                 max = k
+#         else:
+#             return -1
+#     return max
+
+# print(luckynum([2,2,3,4]))
